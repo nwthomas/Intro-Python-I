@@ -25,18 +25,21 @@ from datetime import datetime
 
 
 def calendar():
-    settings = sys.argv
-    now = datetime.now()
-    year = now.year
-    month = now.month
-    if len(sys.argv) > 1:
-        if len(sys.argv) > 2:
-            print(TextCalendar(6).prmonth(
-                int(settings[2][1:len(settings[2]) - 1]), int(settings[1])))
+    try:
+        settings = sys.argv
+        now = datetime.now()
+        year = now.year
+        month = now.month
+        if len(sys.argv) > 1:
+            if len(sys.argv) > 2:
+                print(TextCalendar(6).prmonth(
+                    int(settings[2][1:len(settings[2]) - 1]), int(settings[1])))
+            else:
+                print(TextCalendar(6).prmonth(year, int(settings[1])))
         else:
-            print(TextCalendar(6).prmonth(year, int(settings[1])))
-    else:
-        print(TextCalendar(6).prmonth(year, month))
+            print(TextCalendar(6).prmonth(year, month))
+
+    except:  # analogous to the try/catch blocks in JS
         print(
             "\"Please input parameters in the format '14_cal.py month [year]'\"")
 
